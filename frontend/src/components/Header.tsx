@@ -1,8 +1,7 @@
 import Logo from "../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
-type Props = {};
 
-function Header({}: Props) {
+function Header() {
   return (
     <header>
       <nav className="main-nav">
