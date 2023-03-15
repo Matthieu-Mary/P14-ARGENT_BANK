@@ -1,8 +1,8 @@
-type Props = {};
+import imgBanner from "../../assets/img/bank-tree.jpeg"
 
-function HeroBanner({}: Props) {
+function HeroBanner() {
   return (
-    <div className="hero">
+    <div className="hero" style={{ backgroundImage :`url(${imgBanner})` }}>
       <section className="hero-content">
         <h2 className="sr-only">Promoted Content</h2>
         <p className="subtitle">No fees.</p>

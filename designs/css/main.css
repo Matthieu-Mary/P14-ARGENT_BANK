@@ -70,6 +70,8 @@ body {
   width: 200px;
 }
 
+/* -------------------------- 1 --------------------------- */
+
 .hero {
   background-image: url('../img/bank-tree.jpeg');
   background-position: 0 -50px;
@@ -123,6 +125,8 @@ body {
   }
 }
 
+/* --------------------- 2 ---------------------- */
+
 .features {
   display: flex;
   flex-direction: column;
@@ -152,6 +156,8 @@ body {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
+
+/* -------------- 3 -------------- */
 
 .sign-in-button {
   display: block;
@@ -201,6 +207,8 @@ body {
   padding: 5px;
   font-size: 1.2rem;
 }
+
+/* ----------- 4 ----------- */
 
 .footer {
   display: flex;
