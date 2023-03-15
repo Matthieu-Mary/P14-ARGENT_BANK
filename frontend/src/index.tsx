@@ -4,7 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
-import store from "../src/app/store";
+import { store } from "../src/app/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
