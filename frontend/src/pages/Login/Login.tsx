@@ -14,7 +14,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.auth)
-  const { authSuccess, token, error } = data
+  const { authSuccess, error } = data
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

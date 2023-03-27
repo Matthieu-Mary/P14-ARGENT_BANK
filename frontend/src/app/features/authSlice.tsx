@@ -4,14 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 interface AuthState {
   token: string | null;
   authSuccess: boolean;
-  error: string | null;
+  error: string;
 }
 
   // Initial state
   const initialState: AuthState = {
     token: null,
     authSuccess: false,
-    error: null
+    error: ""
   };
   
   // Slice Redux pour gérer l'authentification
@@ -22,17 +22,22 @@ interface AuthState {
       loginFulfilled: (state, {payload}) => {
         state.token = payload.body.token
         state.authSuccess = true
-        state.error = null
+        state.error = ""
       },
       loginRejected: (state, {payload}) => {
         state.token = null
         state.authSuccess = false
         state.error = payload
+      },
+      logoutUser: (state) => {
+        state.token = null
+        state.authSuccess = false
+        state.error = ""
       }
     },
 });
 
-export const { loginFulfilled, loginRejected } = authSlice.actions;
+export const { loginFulfilled, loginRejected, logoutUser } = authSlice.actions;
 export default authSlice.reducer;
 
 
