@@ -12,6 +12,36 @@
           padding: 10px;
           cursor: pointer;
         }
+        .edit-container {
+          .container-edit-inputs {
+            display: flex;
+            justify-content: center;
+            input {
+              padding: 0.75rem;
+              border: 1px solid gray;
+              margin-right: 10px;
+              margin-left: 10px;
+              border-radius: 5px;
+              color: gray;
+              font-weight: 600;
+              font-size: 16px;
+            }
+          }
+          .container-edit-btn {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            button {
+              border:1px solid #00bc77;
+              color: #00bc77;
+              width: 7rem;
+              height: 2rem;
+              margin-left: 10px;
+              margin-right: 10px;
+              font-weight: bold;
+            }
+          }
+        }
     }
     
     .account {

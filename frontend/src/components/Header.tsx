@@ -3,11 +3,18 @@ import Logo from "../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
 import { logoutUser } from "../app/features/authSlice";
+import { useEffect, useState } from "react";
+import logout from "../app/services/logoutService";
 
 function Header() {
-  const isAuth = useSelector((state: RootState) => state.auth.authSuccess);
+  const [isAuth, setIsAuth] = useState(false);
+  const authSuccess = useSelector((state: RootState) => state.auth.authSuccess);
+
+  useEffect(() => {
+    setIsAuth(authSuccess);
+  }, [authSuccess]);
+
   const dispatch: any = useDispatch();
-  
 
   return (
     <header>
@@ -21,7 +28,11 @@ function Header() {
               <i className="fa fa-user-circle"></i>
               <span className="user-name">Tony</span>
             </div>
-            <Link className="main-nav-item" to="/" onClick={dispatch(logoutUser())}>
+            <Link
+              className="main-nav-item"
+              to="/"
+              onClick={ () => dispatch(logout()) } 
+            >
               <i className="fa fa-sign-out"></i>
               Sign Out
             </Link>

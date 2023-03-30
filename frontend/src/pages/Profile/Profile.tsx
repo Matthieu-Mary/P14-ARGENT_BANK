@@ -1,17 +1,57 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../app/store"
-
+import { AppDispatch, RootState } from "../../app/store";
+import profile from "../../app/services/userProfileService";
+import editUser from "../../app/services/editUserService";
 
 export default function Profile() {
+  const dispatch: AppDispatch = useDispatch();
 
-  // const data = useSelector((state: RootState) => state.auth)
- 
+  // GET THE RIGHT PROFILE
+  useEffect(() => {
+    dispatch(profile());
+  }, [dispatch]);
+
+  const userInfos = useSelector((state: RootState) => state.user);
+  const { firstName, lastName } = userInfos;
+
+  // EDIT NAMES
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedFirstName, setEditedFirstName] = useState(firstName ?? "");
+  const [editedLastName, setEditedLastName] = useState(lastName ?? "");
+
+  const handleEdit = () => {
+    dispatch(editUser(editedFirstName, editedLastName));
+    setIsEditing(false)
+  };
 
   return (
     <main className="user-account">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+        {isEditing ? (
+          <div className="edit-container">
+            <h1>Welcome back</h1>
+            <div className="container-edit-inputs">
+              <input type="text" placeholder={firstName ?? ""} value={editedFirstName} onChange={(e) => setEditedFirstName(e.target.value)} />
+              <input type="text" placeholder={lastName ?? ""} value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)}/>
+            </div>
+            <div className="container-edit-btn">
+              <button onClick={() => handleEdit()}>Save</button>
+              <button onClick={() => setIsEditing(false)}>Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h1>
+              Welcome back
+              <br />
+              {firstName} {lastName}!
+            </h1>
+            <button className="edit-button" onClick={() => setIsEditing(true)}>
+              Edit Name
+            </button>
+          </>
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
@@ -45,5 +85,5 @@ export default function Profile() {
         </div>
       </section>
     </main>
-  )
+  );
 }
