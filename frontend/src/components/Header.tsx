@@ -26,7 +26,7 @@ function Header() {
           <div className="logout-container">
             <div>
               <i className="fa fa-user-circle"></i>
-              <span className="user-name">{connectedUser}</span>
+              <Link to="/profile" className="user-name">{connectedUser}</Link>
             </div>
             <Link
               className="main-nav-item"
