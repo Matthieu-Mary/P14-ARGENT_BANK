@@ -2,13 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 import Logo from "../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
-import { logoutUser } from "../app/features/authSlice";
 import { useEffect, useState } from "react";
 import logout from "../app/services/logoutService";
 
 function Header() {
   const [isAuth, setIsAuth] = useState(false);
   const authSuccess = useSelector((state: RootState) => state.auth.authSuccess);
+  const connectedUser = useSelector((state: RootState) => state.user.firstName)
 
   useEffect(() => {
     setIsAuth(authSuccess);
@@ -26,7 +26,7 @@ function Header() {
           <div className="logout-container">
             <div>
               <i className="fa fa-user-circle"></i>
-              <span className="user-name">Tony</span>
+              <span className="user-name">{connectedUser}</span>
             </div>
             <Link
               className="main-nav-item"

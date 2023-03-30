@@ -11,9 +11,11 @@ export default function Profile() {
   useEffect(() => {
     dispatch(profile());
   }, [dispatch]);
-
+  
   const userInfos = useSelector((state: RootState) => state.user);
   const { firstName, lastName } = userInfos;
+
+  console.log(userInfos)
 
   // EDIT NAMES
   const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +24,7 @@ export default function Profile() {
 
   const handleEdit = () => {
     dispatch(editUser(editedFirstName, editedLastName));
-    setIsEditing(false)
+    setIsEditing(false);
   };
 
   return (
