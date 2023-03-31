@@ -17,8 +17,8 @@ function ProfileHeader() {
 
   // EDIT NAMES
   const [isEditing, setIsEditing] = useState(false);
-  const [editedFirstName, setEditedFirstName] = useState("");
-  const [editedLastName, setEditedLastName] = useState("");
+  const [editedFirstName, setEditedFirstName] = useState(firstName ?? "");
+  const [editedLastName, setEditedLastName] = useState(lastName ?? "");
 
   const handleEdit = () => {
     const newFirstName = editedFirstName !== "" ? editedFirstName : firstName;
@@ -26,6 +26,12 @@ function ProfileHeader() {
     dispatch(editUser(newFirstName, newLastName));
     setIsEditing(false);
   };
+
+  // Refresh values inside inputs if user change
+  useEffect(() => {
+    setEditedFirstName(firstName ?? "");
+    setEditedLastName(lastName ?? "");
+  }, [firstName, lastName]);
 
   return (
     <div className="header">
@@ -35,12 +41,12 @@ function ProfileHeader() {
           <div className="container-edit-inputs">
             <input
               type="text"
-              value={firstName ?? ""}
+              value={editedFirstName}
               onChange={(e) => setEditedFirstName(e.target.value)}
             />
             <input
               type="text"
-              value={lastName ?? ""}
+              value={editedLastName}
               onChange={(e) => setEditedLastName(e.target.value)}
             />
           </div>
