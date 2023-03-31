@@ -1,0 +1,25 @@
+paths:
+  /accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts
+      summary: Get all user's accounts
+      description: Return user's accounts list
+      parameters:
+        - in: header
+        name: Authorization
+        description: Attach Bearer JWT token
+        require: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User Accounts retrieved successfully
+          schema:
+            $ref: '#/definitions/Accounts'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
