@@ -4,6 +4,7 @@ import { AppDispatch } from "../store";
 export const logout = () => (dispatch: AppDispatch) => {
     sessionStorage.clear();
     localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
     dispatch(logoutUser())
 }  
 
