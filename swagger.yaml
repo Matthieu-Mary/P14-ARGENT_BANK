@@ -162,7 +162,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{AccountId}/transactions:
+  /user/accounts/{accountId}/transactions:
     get:
       security:
         - Bearer: []
@@ -172,7 +172,7 @@ paths:
       description: Return transaction list of the selected account for the month
       parameters:
         - in: path
-          name: AccountId
+          name: accountId
           description: Account id
           required: true
           type: string
@@ -183,6 +183,65 @@ paths:
           description: Account Transactions retrieved successfully
           schema:
             $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: Get the selected transaction
+      description: Return transaction list of the selected account for the month
+      parameters:
+        - in: path
+          name: accountId
+          description: Account id
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: Transaction id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Selected Transaction retrieved successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: Edit transaction informations
+      description: User can modify the category and the note of the selected transaction
+      parameters:
+        - in: path
+          name: accountId
+          description: Account id
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: Transaction id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Selected Transaction edited successfully
+          schema:
+            $ref: '#/definitions/TransactionEdit'
         '400':
           description: Invalid Fields
         '500':
@@ -277,6 +336,14 @@ definitions:
     type: array
     items: 
       $ref: "#/definitions/Transaction"
+  TransactionEdit:
+    type: object
+    properties: 
+      category: 
+        type: string
+      notes:
+        type: string
+      
     
 
 
