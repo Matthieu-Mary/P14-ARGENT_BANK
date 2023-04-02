@@ -70,6 +70,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -93,6 +94,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - in: body
           name: body
           description: Update user profile attributes
@@ -110,7 +112,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /accounts:
+  /user/accounts:
     get:
       security:
         - Bearer: []
@@ -120,9 +122,10 @@ paths:
       description: Return user's accounts list
       parameters:
         - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        require: true
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -130,6 +133,56 @@ paths:
           description: User Accounts retrieved successfully
           schema:
             $ref: '#/definitions/Accounts'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/{AccountId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Accounts
+      summary: Get the selected user account
+      description: Return the user account
+      parameters:
+        - in: path
+          name: AccountId
+          description: Account id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: User Account retrieved successfully
+          schema:
+            $ref: '#/definitions/Account'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/{AccountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: Get the transaction list of the month
+      description: Return transaction list of the selected account for the month
+      parameters:
+        - in: path
+          name: AccountId
+          description: Account id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Account Transactions retrieved successfully
+          schema:
+            $ref: '#/definitions/Transactions'
         '400':
           description: Invalid Fields
         '500':
@@ -188,9 +241,43 @@ definitions:
         type: string
       lastName:
         type: string
-  Accounts:
+  Account:
     type: object
     properties:
-      id: 
+      id:
+        type: integer
+      name:
+        type: string
+      balance:
         type: number
+  Accounts: 
+    type: array
+    items: 
+      $ref: "#/definitions/Account"
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: integer
+      date:
+        type: string
+      description:
+        type: string
+      amount:
+        type: integer
+      balance:
+        type: integer
+      transactionType:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string
+  Transactions: 
+    type: array
+    items: 
+      $ref: "#/definitions/Transaction"
     
+
+
+
