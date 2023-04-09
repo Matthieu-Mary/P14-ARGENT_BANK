@@ -14,7 +14,6 @@ function Header() {
   const formatedConnectedUserStorage = connectedUserStorage?.split("").slice(1, connectedUserStorage.length - 1).join("");
   const token = localStorage.getItem("token") ? localStorage.getItem("token") : sessionStorage.getItem("token") ? sessionStorage.getItem("token") : null;
 
-
   useEffect(() => {
     if(token) {
       setIsAuth(true);
