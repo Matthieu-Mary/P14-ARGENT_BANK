@@ -235,6 +235,12 @@ paths:
           description: Transaction id
           required: true
           type: string
+        - in: body
+          name: body
+          description: Update category and note
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionEdit'
       produces:
         - application/json
       responses:
