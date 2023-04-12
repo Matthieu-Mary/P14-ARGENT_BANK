@@ -137,7 +137,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{AccountId}:
+  /user/accounts/{accountId}:
     get:
       security:
         - Bearer: []
@@ -147,7 +147,7 @@ paths:
       description: Return the user account
       parameters:
         - in: path
-          name: AccountId
+          name: accountId
           description: Account id
           required: true
           type: string
